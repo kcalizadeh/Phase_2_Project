@@ -1,115 +1,71 @@
-# Phase 2 Project
+# Phase 2 Final Project
 
-## Introduction
 
-In this lesson, we review the guidelines for the Phase 2 Project.
 
-## Objectives
+Student name: Kourosh Alizadeh  
+Student pace: full time  
+Scheduled project review date/time: 10/12/2020, 3pm EST  
+Instructor name: Rafael Carrasco  
+Blog post URL: TBD  
 
-You will be able to:
+## An Examination of the Housing Habits of the Human Aliens
 
-* Start your Phase 2 Project
-* Check that your project meets the requirements
-* Submit your project materials in Canvas
-* Prepare for your project review
+To my dear and esteemed colleagues of the Alien Species Research Comission:
 
-## Project Overview
+Thanks to our brave agents in the field, we have recently acquired some data on patterns regarding the artifical habitats humans have created for themselves in a place called King's County. 
 
-Another module down--you're almost half way there!
+In this report, we use this data to examine what features humans value in a dwelling. In particular, we look at the following questions:
 
-![awesome](https://raw.githubusercontent.com/learn-co-curriculum/dsc-phase-2-project-online/master/halfway-there.gif)
+1. Do humans prefer to live near water or to live more inland where it is safer?
+2. Do humans like to have a lot of empty land around them?
+3. Do humans like to live high above the ground?
+4. Do humans enjoy living deep below the ground?
+5. Do humans use their eyes for pleasure or only survival?
 
-All that remains in Phase 2 is to put our newfound data science skills to use with a large project! You should expect this project to take between 20 and 25 hours of solid, focused effort. If you're done way quicker, go back and dig in deeper or try some of the optional "level up" suggestions. If you're worried that you're going to get to 30 hrs and still not even have the data imported, reach out to an instructor in Slack ASAP to get some help!
+Finally, we build a model using multlinear regression to estimate how a human might value a house based on its features. 
 
-### The Data
+To begin with, let's look at the results for each question:
 
-For this project, you'll be working with the King County House Sales dataset. We've modified the dataset to make it a bit more fun and challenging.  The dataset can be found in the file `kc_house_data.csv` in the data folder in this repo.
+### 1. Do humans prefer to live near water?
 
-The description of the column names can be found in the `column_names.md` file in the data folder in this repo. As with most real world data sets, the column names are not perfectly described, so you'll have to do some research or use your best judgment if you have questions relating to what the data means.
+![title](images/waterfront.png)
 
-You'll clean, explore, and model this dataset with a multivariate linear regression to predict the sale price of houses as accurately as possible.
+Yes, they do. Houses built near the water predominantly among the most expensive.
 
-### Business Problem
 
-For this project, it will be up to you to define a stakeholder and business problem appropriate to this dataset.
 
-## Deliverables
+### 2. Do humans like to have empty land around them?
 
-There are four deliverables for this project:
+![title](images/surroundings.png)
 
-1. A **GitHub repository**
-2. A **Jupyter Notebook**
-3. A non-technical presentation **slide deck**
-4. A non-technical presentation **recording**
+There does not seem to be any connection between the amount of surrounding space a house has and a human's willingness to expend financial tokens for its purchase.
 
-Keep in mind that the audience for these deliverables is not only your teacher, but also potential employers. Employers will look at your project deliverables to evaluate multiple skills, including coding, modeling, communication, and domain knowledge. You will want to polish these as much as you can, both during the course and afterwards.
+### 3. Do humans value living high above the ground?
 
-### GitHub Repository
+![title](images/tallness.png)
 
-Your GitHub repository is the public-facing version of your project that your instructors and potential employers will see - make it as accessible as you can. At a minimum, it should contain all your project files and a README.md file that summarizes your project and helps visitors navigate the repository.
+Yes, they do. There are more tall homes among the upper quartile than there are among lower quartiles. 
 
-### Jupyter Notebook
+### 4. Do humans enjoy living deep beneath the ground?
 
-Your Jupyter Notebook is the primary source of information about your analysis. At a minimum, it should contain or import all of the code used in your project and walk the reader through your project from start to finish. You may choose to use multiple Jupyter Notebooks in your project, but you should have one that provides a full project overview as a point of entry for visitors.
+![title](images/basements.png)
 
-For this project, your Jupyter Notebook should meet the following specifications:
+Yes. Basements, like access to water and high floors, also seemed to be more common among more expensive homes. 
 
-#### Organization/Code Cleanliness
+### 5. Do humans use their eyes for pleasure?
 
-* The notebook should be well organized, easy to follow,  and code should be commented where appropriate.  
-    * Level Up: The notebook contains well-formatted, professional looking markdown cells explaining any substantial code.  All functions have docstrings that act as professional-quality documentation
-* The notebook is written for technical audiences with a way to both understand your approach and reproduce your results. The target audience for this deliverable is other data scientists looking to validate your findings.
+![title](images/view.png)
 
-#### Visualizations & EDA
+Yes. While some had argued previously that the human eye was simply a way of sensing radiation for survival purposes, humans do seem to value experiencing certain patterns of radiation more than others, regardless of survivability. They are willing to spend more on homes that enable them to experience these preferred patterns more often.
 
-* Your project contains at least 4 meaningful data visualizations, with corresponding interpretations. All visualizations are well labeled with axes labels, a title, and a legend (when appropriate)  
-* You pose at least 3 meaningful questions and answer them through EDA.  These questions should be well labeled and easy to identify inside the notebook.
-    * **Level Up**: Each question is clearly answered with a visualization that makes the answer easy to understand.   
-* Your notebook should contain 1 - 2 paragraphs briefly explaining your approach to this project.
+## Our Regression Model
 
-#### Model Quality/Approach
+We used most of these features, as well as the log sqftage of the living space in each artifical habitat, to build a multiple regression model.
 
-* Your model should not include any predictors with p-values greater than .05.  
-* Your notebook shows an iterative approach to modeling, and details the parameters and results of the model at each iteration.  
-    * **Level Up**: Whenever necessary, you briefly explain the changes made from one iteration to the next, and why you made these choices.  
-* You provide at least 1 paragraph explaining your final model.   
-* You pick at least 3 coefficients from your final model and explain their impact on the price of a house in this dataset.   
+![title](images/regression.png)
 
-### Non-Technical Presentation Slides and Recording
+The strongest coefficient was the one associated with the log of living space. As that number goes up, so too does the log of price. The coefficients of the basement and the high floors features were negative. This is a little surprising, since we know there is a positive correlation between these features and the price of homes. But their negative contribution here must be a sign of them balancing out some other feature, likely the living space one. Last, the view features did not contribute too much to our model, but they did do something, and their p-values indicate that they were reasonably significant.
 
-Your non-technical presentation is your opportunity to communicate clearly and concisely about your project and it's real-world relevance. The target audience should be people with limited technical knowledge who may be interested in leveraging your project. For Phase 1, these would be Microsoft executives interested in making decisions about movie development.
+## Recommendations
 
-Your presentation should:
 
-* Contain between 5 - 10 professional-quality slides.  
-    * **Level Up**: The slides should use visualizations whenever possible, and avoid walls of text.
-* Take no more than 5 minutes to present.   
-* Avoid technical jargon and explain the results in a clear, actionable way for non-technical audiences.
-
-**_Based on the results of your models, your presentation should discuss at least two concrete features that highly influence housing prices._**
-
-We recommend using Google Slides, PowerPoint or Keynote to create your presentation slides. We recommend using Zoom to record your live presentation to a local video file ([instructions here][]) - other options include Quicktime, PowerPoint, or Nimbus. Video files must be under 500 MB and formatted as 3GP, ASF, AVI, FLV, M4V, MOV, MP4, MPEG, QT, or WMV.
-
-## Getting Started
-
-Please start by reviewing this document. If you have any questions, please ask them in Slack ASAP so (a) we can answer the questions and (b) so we can update this document to make it clearer.
-
-**When you start on the project, reach out to an instructor immediately via Slack to let them know and schedule your project review.** If you're not sure who to schedule with, please ask in your cohort channel in Slack.
-
-Once you're done with the numbered topics in Phase 1, please start on the project. Do that by forking [the Phase 2 Project Repository][], cloning it locally, and working in the `student.ipynb` file. Make sure to also add and commit a PDF of your presentation to your repository with a file name of `presentation.pdf`.
-
-## Project Submission and Review
-
-Review [the Phase Project Submission and Review guidance][] to learn how to submit your project and how it will be reviewed. Your project must pass review for you to progress to the next Phase.
-
-**Please note: We need to receive your complete submission at least 24 hours before your review to confirm that you are prepared for the review. If you wish to revise your submission, please do so no later than 3 hours before your review so that we can have time to look at your updated materials.**
-
-## Summary
-
-The end-of-phase projects and project reviews are a critical part of the program. They give you a chance to both bring together all the skills you've learned into realistic projects and to practice key "business judgement" and communication skills that you otherwise might not get as much practice with.
-
-The projects are serious and important - they can be passed and they can be failed. Take the project seriously, put the time in, ask for help from your peers or instructors early and often if you need it, and treat the review as a job interview and you'll do great. We're rooting for you to succeed and we're only going to ask you to take a review again if we believe that you need to. We'll also provide open and honest feedback so you can improve as quickly and efficiently as possible.
-
-[the Phase 2 Project Repository]: https://github.com/learn-co-curriculum/dsc-phase-2-project-online
-[instructions here]: https://support.zoom.us/hc/en-us/articles/201362473-Local-recording
-[the Phase Project Submission and Review guidance]: https://github.com/learn-co-curriculum/dsc-project-submissions-online

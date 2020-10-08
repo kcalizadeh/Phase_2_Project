@@ -4,3 +4,10 @@
 __pycache__
 *.db
 *.pytest_cache
+CONTRIBUTING.md
+LICENSE.md
+README.ipynb
+student.ipynb
+halfway-there.gif
+.canvas
+
