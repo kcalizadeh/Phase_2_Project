@@ -6,12 +6,21 @@ Scheduled project review date/time: 10/12/2020, 3pm EST
 Instructor name: Rafael Carrasco  
 Blog post URL: TBD  
 
+### This Repo Contains:
+- notebook analyzing data from the King's County Housing dataset
+- a script of useful functions, libraries, and graphing set-up
+- a slide deck presentation of our findings
+- .png files of our graphs and regression model statistics
+- a data folder with the relevant data and a description of it
+
 ### Outline
 
 1. Introduction
 2. Primary Research Questions Answered
 3. Regression Model
 4. Recommendations and Future Research
+
+
 
 ## 1. An Examination of the Housing Habits of the Human Aliens
 
